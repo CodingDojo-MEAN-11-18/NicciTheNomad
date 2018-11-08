@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>The Codingdojo Hunting Git</title>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <!-- <script src="huntingGit.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    // $(document).ready(function () {
+    //     // https://api.github.com/users/NicciTheNomad
+
+    //     $.get("https://api.github.com/users/NicciTheNomad", displayName);
+    //     // Notice that displayName is a function that takes in 1 parameter (this is the data that comes back from the API)
+    //     function displayName(data) {
+    //         console.log('data: ' + data);
+    //         // console.log('name: ' + data.name);
+    //         $('body').append('name: ' + data.name + '<br>');
+    //         $('body').append('location: ' + data.location + '<br>');
+    //     }
+    //     // if (typeof(data) === object){
+    //     //     displayName(data).then(successCallback, failureCallback);
+    //     //     function successCallback(data){
+    //     //         console.log('success');
+    //     //         // $('body').append('Name: ' + data.name + '<br>');
+    //     //         // $('body').append('Location(s): ' + data.location + '<br>');
+    //     //     // }
+    //     //     function failureCallback(error){
+    //     //         console.log('failed');
+    //     //     }
+
+    //     // }
+    // });
+    // FIRST ATTEMPT ABOVE WITH DOC.READY
+
+    //THIRD ATTEMPT - PROMISE?
+    $(document).ready(function () {
+      //the request to the API - wrap in a "promise"
+      const promise = new Promise(function (resolve, reject) {
+        $.get({
+          url: 'https://api.github.com/users/NicciTheNomad',
+          //success is one response from api -->.then
+          success: function (data) {
+            console.log(data);
+            // console.log(url);
+            resolve(data);
+          },
+          error: function (error) {
+            reject(error.statusText);
+
+            console.log('error');
+            console.log(error);
+          }
+
+        });
+
+      })
+      promise.then(function (data) {
+        $('body').append('name: ' + data.name + '<br>');
+        $('body').append('location: ' + data.location + '<br>');
+      })
+        .catch(function (errorMessage) {
+          $('body').append('Error: ' + errorMessage + '<br>');
+        })
+    });
+        // // NEW ATTEMPT BELOW WITH DOC. READY
+        // $(document).ready(function () {
+        //     function getDataFromAPI(resolve, reject){
+        //         var data = "notSureWhatIAmDoing"
+        //         // can't do this because it's not defined
+        //         // sortingThingsOut(function(){
+        //         //     data = $.get("https://api.github.com/users/NicciTheNomad")
+        //         // });
+        //         setTimeout(function(){
+        //             // data = ???
+        //             data = $.get("https://api.github.com/users/NicciTheNomad");
+        //         }, 1000);
+        //         console.log(data);
+        //         // reject(); comment out?
+        //     }
+        //     function requestDataFromAPI(){
+        //         console.log(data);
+        //         console.log('top of request function. YAH!');
+        //         var data = new Promise(function(resolve,reject){
+        //             console.log('in request promise function');
+        //             getDataFromAPI(resolve, reject);
+        //             console.log(data);
+        //         });
+        //         // if promise successful - but what data is this? the data in this loop only?
+        //         data.then(function(data){
+        //             function displayName(data) {
+        //                 console.log('data (should be an object): ' + data);
+        //                 $('body').append('name: ' + data.name + '<br>');
+        //                 $('body').append('location: ' + data.location + '<br>');
+        //             }
+        //         });
+        //         data.catch(function(){
+        //             console.log('failure');
+        //         })
+        //         console.log('reached the end of the requestData function. HIGH FIVE!');
+        //     }
+        //     requestDataFromAPI();
+        // });
+        // //end of 2nd attempt
+  </script>
+</head>
+
+<body>
+  <div id='data'>
+
+  </div>
+  <div id='error'>
+
+  </div>
+</body>
+
+</html>
