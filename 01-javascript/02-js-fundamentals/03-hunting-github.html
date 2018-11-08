@@ -4,21 +4,21 @@
 <head>
   <title>The Codingdojo Hunting Git</title>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script type="text/javascript">
     //THIRD ATTEMPT - PROMISE?
     $(document).ready(function () {
       let baseURL = "https://api.github.com/users/";
       console.log(baseURL);
       $('button').click(function () {
-        console.log($('input[name="githubuser"]').val());
-        let url = baseURL + $('input[name="githubuser"]').val();
+        console.log($('#githubuser').val());
+        let url = baseURL + $('#githubuser').val();
         console.log(url);
+        // return;
         //the request to the API - wrap in a "promise"
         const promise = new Promise(function (resolve, reject) {
           $.get({
-            url: 'https://api.github.com/users/' + 'NicciTheNomad',
+            url: url,
             // gitName: 'NicciTheNomad',
             // url: 'https://api.github.com/users/' + $(this).attr('githubuser'),
             // url: "https://api.github.com/users/" + $('input[name="githubuser"]').val(),
@@ -37,11 +37,11 @@
           });
         })
         promise.then(function (data) {
-          $('body').append('name: ' + data.name + '<br>');
-          $('body').append('location: ' + data.location + '<br>');
+          $('#data').append('name: ' + data.name + '<br>');
+          $('#data').append('location: ' + data.location + '<br>');
         })
           .catch(function (errorMessage) {
-            $('body').append('Error: ' + errorMessage + '<br>');
+            $('#data').append('Error: ' + errorMessage + '<br>');
           })
       });
 
@@ -61,7 +61,7 @@
     </form> -->
   <div>
     <label for="">GithubUser</label>
-    <input type="text" name='githubuser'>
+    <input type="text" id='githubuser'>
   </div>
   <button>Submit Github User</button>
 

@@ -33,8 +33,12 @@
       word_counter = 0,
       character_counter = 0;
     function updateText() {
-      el.innerHTML = el.innerHTML + words[word_counter][character_counter++];
-      if (character_counter == words[word_counter].length + 1) { //length plus 1 to get all the characters.
+      var character = words[wordCounter][characterCounter++];
+      if (character === '') {
+        character = "&nbsp;" // use non-blank space character
+      }
+      el.innerHTML = el.innerHTML + character;
+      if (characterCounter === words[word_counter].length + 1) { //length plus 1 to get all the characters.
         word_counter++; 	//choose a different word
         character_counter = 0;	//start over with the first character of the word
         el.innerHTML = '';  //set the html to be blank
