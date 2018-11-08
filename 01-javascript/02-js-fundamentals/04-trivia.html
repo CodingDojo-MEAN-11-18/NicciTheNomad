@@ -1,1 +1,127 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Trivia</title>
+  <link rel="stylesheet" type="text/css" href="trivia.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="04-trivia.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      //the request to the API - wrap in a "promise"
+      const promise = new Promise(function (resolve, reject) {
+        $.get({
+          url: 'https://opentdb.com/api.php?amount=9',
+          //success is one response from api -->.then
+          success: function (data) {
+            // console.log(data);
+            resolve(data);
+            // var data = data;
+          },
+          error: function (error) {
+            reject(error.statusText);
+
+            console.log('error');
+            console.log(error);
+          }
+
+        });
+      })
+
+      // function counter() {
+      //     //pass in val from clicked box if answwered correctly
+      //         var points = 0;
+      //         points = points + 100; //must be a variable for either 100, 200 or 300 points based on row?
+      //         // console.log(points);
+      //         return points;
+      // }
+
+      // function displayData(id, data) {
+      //     $('header').append('<h4>' + data.results[id].category + '</h4>' + '<br>');
+      //     console.log(data.results[$(this).attr('id')].category);
+      //     $('textarea').append('<p>' + data.results[id].question + '</p>' + '<br>');
+      //     $('textarea').append('<p>' + data.results[id].correct_answer + data.results[id].incorrect_answers + '</p>' + '<br>');
+      // }
+      //display the link (a - tag) after array of data empty
+
+      promise.then(function (data) {
+
+        function counter() {
+          //pass in val from clicked box if answwered correctly
+          var points = 0;
+          points = points + 100; //must be a variable for either 100, 200 or 300 points based on row?
+          // console.log(points);
+          return points;
+        }
+        console.log(data.results[0].category);
+
+
+        counter();
+        $('h3').append(counter());
+        console.log(data);
+        // i need to append as clicked.
+
+        $('div').click(function () {
+          var id = $(this).attr('id');
+          // console.log($(this).attr('id'));
+          // console.log(id);
+          $('.header1').append('<h4>' + data.results[id].category + '</h4>' + '<br>');
+          // console.log(data.results[$(this).attr('id')].category);
+          $('.zero').append('<p>' + data.results[id].question + '</p>' + '<br>');
+          $('#0').append('<p>' + data.results[id].correct_answer + data.results[id].incorrect_answers + '</p>' + '<br>');
+          // displayData(curr_id);
+        });
+      })
+        .catch(function (errorMessage) {
+          $('body').append('Error: ' + errorMessage + '<br>');
+        })
+    });
+  </script>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class='header'>
+      <a href="https://opentdb.com/api.php?amount=9">Continue with new questions!</a>
+      <h2>Trivia Night</h2>
+      <h3></h3>
+      <h2> Points</h2>
+    </div>
+    <div class="row">
+      <div class="column">
+        <header class='header1'></header>
+        <div answered="false" val="100" id="0" class='zero'>100</div>
+
+        <div answered="false" val="200" id="1" class='one'>200</div>
+
+        <div answered="false" val="300" id="2" class='two'>300</div>
+      </div>
+
+      <div class="column">
+        <header class='header2'></header>
+        <div answered="false" val="100" id="3" class='three'>100</div>
+
+        <div answered="false" val="200" id="4" class='four'>200</div>
+
+        <div answered="false" val="300" id="5" class='five'>300</div>
+      </div>
+
+      <div class="column">
+        <header class='header3'></header>
+        <div answered="false" val="100" id="6" class='six'>100</div>
+
+        <div answered="false" val="200" id="7" class='seven'>200</div>
+
+        <div answered="false" val="300" id="8" class='eight'>300</div>
+      </div>
+    </div>
+    <div id='error'>
+
+    </div>
+
+  </div>
+</body>
+
+</html>
 <!-- 2 hours -->
