@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Game of Thrones</title>
+  <link rel="stylesheet" type="text/css" href="gameOfThrones.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="gameOfThrones.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('button').click(function () {
+        console.log($(this).attr('id'));
+        console.log($(this).attr('data'));
+        let houseName = $(this).attr('data');
+        console.log(houseName);
+        //this is NOW asso. with the buttons clicked
+        $.get("https://anapioficeandfire.com/api/houses/" + $(this).attr('id'), displayData);
+        // $.get("https://anapioficeandfire.com/api/houses?pageSize=100", displayDataAgain);
+      });
+      // Notice that displayName is a function that takes in 1 parameter (this is the data that comes back from the API)
+      function displayData(id) {
+        console.log(id);
+        $('body').append('House Name: ' + id.name + '<br>');
+        $('body').append('Words: ' + id.words + '<br>');
+        $('body').append('Titles: ' + id.titles + '<br>');
+
+        // ---------
+
+        // for(let index=0; index<data.length; index++){
+        // console.log(data[index].name);
+        // if(data[index].name.toLowerCase().endsWith($(this).attr('data'))){
+        //     house = data[index];
+        // }
+        // }
+        // why the hell does id return as success?! arg!!!
+        // if(data === 'algood'){
+        //     $('body').append('House Name: ' + data[0].name + '<br>');
+        //     $('body').append('Words: ' + data[0].words + '<br>');
+        //     $('body').append('Titles: ' + data[0].titles + '<br>');
+        // }
+        // if (data === 'targaryen'){
+        //         $('body').append('House Name: ' + data[1].name + '<br>');
+        //         $('body').append('Words: ' + data[1].words + '<br>');
+        //         $('body').append('Titles: ' + data[1].titles + '<br>');
+        // }
+        // else {
+        //     $('body').append('API data: ' + '<br>' +  data);
+        // }
+        //must be away to map 'this' to the name of the house on the browser and the api data
+        //--------
+      }
+
+      // function displayDataAgain(data){
+      //     // let house = ($(this).attr('data'));
+      //     //data is an array of all the houses
+      //     console.log(data.length);
+      //     for(let index=0; index<data.length; index++){
+      //         console.log($(this).attr('data'));
+      //         if(data[index].name.toLowerCase().endsWith($(this).attr('data'))){
+      //             var house = data[index];
+      //             // console.log('house data: ' + house);
+      //             $('body').append('House Name: ' + house.name + '<br>');
+      //             $('body').append('Words: ' + house.words + '<br>');
+      //             $('body').append('Titles: ' + house.titles[0] + '<br>');
+      //         }
+      //     }
+      // }
+    });
+  </script>
+</head>
+
+<body>
+  <div id='data'></div>
+  <div id='algood'>
+    <button id="1" data="algood"> House Algood </button>
+
+  </div>
+  <div id='targaryen'>
+    <button id='378' data=""> House Targaryen </button>
+  </div>
+  <div id='ambrose'>
+    <button id="4" data="Ambrose">House Ambrose</button>
+  </div>
+  <div>
+    <button id='47' data='brownhill'>House Brownhill</button>
+  </div>
+</body>
+
+</html>

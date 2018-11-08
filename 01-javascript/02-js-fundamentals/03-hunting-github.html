@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>The Codingdojo Hunting Git</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    //THIRD ATTEMPT - PROMISE?
+    $(document).ready(function () {
+      let baseURL = "https://api.github.com/users/";
+      console.log(baseURL);
+      $('button').click(function () {
+        console.log($('input[name="githubuser"]').val());
+        let url = baseURL + $('input[name="githubuser"]').val();
+        console.log(url);
+        //the request to the API - wrap in a "promise"
+        const promise = new Promise(function (resolve, reject) {
+          $.get({
+            // url: 'https://api.github.com/users/' + 'NicciTheNomad',
+            // gitName: 'NicciTheNomad',
+            // url: 'https://api.github.com/users/' + $(this).attr('githubuser'),
+            // url: "https://api.github.com/users/" + $('input[name="githubuser"]').val(),
+            //success is one response from api -->.then
+            success: function (data) {
+              console.log(data, url);
+              resolve(data);
+            },
+            error: function (error) {
+              reject(error.statusText);
+
+              console.log('error');
+              console.log(error);
+            }
+
+          });
+        })
+        promise.then(function (data) {
+          $('body').append('name: ' + data.name + '<br>');
+          $('body').append('location: ' + data.location + '<br>');
+        })
+          .catch(function (errorMessage) {
+            $('body').append('Error: ' + errorMessage + '<br>');
+          })
+      });
+
+    });
+  </script>
+</head>
+
+<body>
+  <legend class='scheduler-border'>Find Github User </legend>
+  <!-- <form (submit)>
+        <div>
+            <label for="">GithubUser</label>
+            <input type="text" name='githubuser'>
+        </div>
+        <button>Submit Github User</button>
+
+    </form> -->
+  <div>
+    <label for="">GithubUser</label>
+    <input type="text" name='githubuser'>
+  </div>
+  <button>Submit Github User</button>
+
+
+  <div id='data'>
+
+  </div>
+
+  <div id='error'>
+
+  </div>
+
+  <div id='playing_around'>
+
+  </div>
+</body>
+
+</html>
