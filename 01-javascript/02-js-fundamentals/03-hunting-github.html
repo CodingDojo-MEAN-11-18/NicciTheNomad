@@ -37,11 +37,11 @@
           });
         })
         promise.then(function (data) {
-          $('#data').append('name: ' + data.name + '<br>');
-          $('#data').append('location: ' + data.location + '<br>');
+          $('body').append('name: ' + data.name + '<br>');
+          $('body').append('location: ' + data.location + '<br>');
         })
           .catch(function (errorMessage) {
-            $('#data').append('Error: ' + errorMessage + '<br>');
+            $('body').append('Error: ' + errorMessage + '<br>');
           })
       });
 
@@ -50,33 +50,11 @@
 </head>
 
 <body>
-  <legend class='scheduler-border'>Find Github User </legend>
-  <!-- <form (submit)>
-        <div>
-            <label for="">GithubUser</label>
-            <input type="text" name='githubuser'>
-        </div>
-        <button>Submit Github User</button>
-
-    </form> -->
   <div>
     <label for="">GithubUser</label>
     <input type="text" id='githubuser'>
   </div>
   <button>Submit Github User</button>
-
-
-  <div id='data'>
-
-  </div>
-
-  <div id='error'>
-
-  </div>
-
-  <div id='playing_around'>
-
-  </div>
 </body>
 
 </html>
