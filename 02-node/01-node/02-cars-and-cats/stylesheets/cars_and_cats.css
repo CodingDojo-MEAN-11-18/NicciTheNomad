@@ -1,0 +1,11 @@
+*{
+
+}
+#container{
+    width: 970px;
+    background-color: lightblue;
+}
+.img{
+    width: 100px;
+    border: 3px solid black;
+}

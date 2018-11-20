@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Codingdojo Hunting Git</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="huntingGit.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      function $Dojo(id) {
+        this.myId = document.getElementById(id);
+        this.click = function (callback) {
+          this.myId.addEventListener("click", callback);
+        };
+
+        this.hover = function (hoverin, hoverout) {
+          this.myId.addEventListener("mouseover", hoverin);
+          this.myId.addEventListener("mouseout", hoverout);
+        };
+
+        return this;
+      }
+      $Dojo('click').click(function clickAction() {
+        alert('time to surf!')
+      });
+
+      // below - nicci
+      // $Dojo is my immediate function - enclosing
+      // (function $Dojo(id) {
+      //     //attach two methods to $dojo
+      //     //methods are actions that can be performed on objects
+      //     console.log(id);
+      //     const click_button = document.getElementById("click")
+      //     click_button.addEventListener('click', clickAction);
+      //     console.log(id);
+      //     function clickAction(){
+      //         alert('time to surf!')
+      //     }
+      //     console.log("I'm an immediate function!");
+      //     const hover_button = document.getElementById("hover")
+      //     hover_button.addEventListener('mouseenter', hoverAction);
+      //     function hoverAction(){
+      //         alert('learning is SUPER fun!')
+      //     }
+      //     // return this and $Dojo do the same thing - why?
+      //     return $Dojo; // this will be an html element object with two methods
+      // })();
+      // completion of nicci's immediate function
+
+
+      // (function $Dojo(id){
+      //     const self = this;
+      //     self.click = document.getElementById(id);
+      //     console.log('here1');
+      //     self.click = function(callback){
+      //         console.log('here2');
+      //         self.click.addEventListener('click', clickAction);
+      //         console.log('here3');
+      //     };
+
+      //     function clickAction(){
+      //         alert('life is good');
+      //     }
+
+      //     return self;
+      // })();
+
+    });
+        // })
+  </script>
+</head>
+
+<body>
+  <button id='click'>Click me</button>
+  <button id='hover'>Hover here</button>
+  <div id="message">
+    Life is super!
+  </div>
+  <!-- <script>
+        let message = "<h1>Look, I'm a dynamic header!</h1>";
+        document.getElementById("message").innerHTML = message;
+
+    </script> -->
+
+</body>
+
+</html>

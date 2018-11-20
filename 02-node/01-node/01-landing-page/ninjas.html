@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>hello</title>
+  <script type='text/javascript'>
+    $(document).ready(function () {
+      let arr = ['surfing', 'skateboarding', 'running', 'playing soccer', 'rockclimbing', 'hiking'];
+      let count = 1;
+      let index = 0;
+      $("#playing_around").click(function () {
+        // for(let count=0; count<2; count++){
+        for (let i = index; i < count; i++) {
+          console.log('Nicci loves to be ' + arr[i]);
+          $('body').append('Nicci loves to be ' + arr[i] + '<br>');
+        }
+        count++;
+        index++;
+        console.log('current count: ' + count);
+        if (count > arr.length + 1) {
+          alert('starting loved activities over again!');
+          count = 1;
+          index = 0;
+        }
+
+        // }
+        // alert("Handler for .click() called.");
+        // index++;
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <p>Hi Ollie</p>
+  <div>
+    <h3>Ninjas Ashton</h3>
+  </div>
+
+  <button id='playing_around'>
+    click
+</button>
+</body>
+
+</html>
