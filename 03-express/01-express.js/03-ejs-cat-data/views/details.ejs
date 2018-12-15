@@ -1,0 +1,18 @@
+<html>
+
+<body>
+  <fieldset>
+    <% for (var x in details) { %>
+      <%= details[x].image %>
+        <h3>Cat Name:
+          <%= details[x].name %>
+        </h3>
+        <textarea name="" id="" cols="30" rows="10">Favorite Food: <%= details[x].food %></textarea>
+        <textarea name="" id="" cols="30" rows="10">Average Life Span: <%= details[x].life_span</textarea>
+        <textarea name="" id="" cols="30" rows="10">Can be found sleeping <%= details[x].sleep</textarea>
+        <% } %>
+  </fieldset>
+
+</body>
+
+</html>
