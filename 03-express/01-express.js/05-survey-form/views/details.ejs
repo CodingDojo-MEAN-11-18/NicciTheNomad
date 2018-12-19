@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Display Results</title>
+</head>
+
+<body>
+  <fieldset>
+    <legend>Results: Submitted Information</legend>
+    Name:
+    <%= data.name %>
+      Dojo Location:
+      <%= data.location %>
+        Favorite Language:
+        <%= data.language %>
+          Comment:
+          <%= data.message %>
+            <input class='button' type='submit' value='SUBMIT BUTTON'>
+            <form action="/"><input class='button' type='submit' value='Go Back'></form>
+            <!-- <a href="/">Go back</a> -->
+  </fieldset>
+
+</body>
+
+</html>
