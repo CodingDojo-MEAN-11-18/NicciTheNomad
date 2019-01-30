@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Survey</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+  $(document).ready(function(){
+    $('#peopleNoServerFile').click(function(){
+      $.get('https://swapi.co/api/people/', function(data){
+        console.log('api peopleNoServerFile data ', data);
+      }, 'json');
+    });
+
+    // $('#people').click(function(){
+    //   $.get('/people', function(data){
+    //     console.log('api data ', data);
+    //   }, 'json');
+    // });
+    $('#people').click(function(){
+      $.get('/people');
+    });
+
+    $('#planets').click(function(){
+      $.get('https://swapi.co/api/planets/', function(data){
+        console.log('api data ', data);
+      }, 'json');
+    });
+
+    $('#species').click(function(){
+      $.get('https://swapi.co/api/species/', function(data){
+        console.log('api data ', data);
+      }, 'json');
+    });
+
+    $('#vehicles').click(function(){
+      $.get('/vehicles', function(data){
+        console.log('api vehicle data ', data);
+      }, 'json');
+    });
+
+    $('#starships').click(function(){
+      $.get('https://swapi.co/api/starships/', function(data){
+        console.log('api data ', data);
+      }, 'json');
+    });
+
+  });
+  </script>
+</head>
+
+<body>
+  <div class="container">
+
+    <button id="people">people</button>
+    <button id="peopleNoServerFile">peopleNoServerFile</button>
+    <button id="planets">planets</button>
+    <button id="species">species</button>
+    <button id="vehicles">vehicles</button>
+    <button id="starships">starships</button>
+
+  </div>
+</body>
+
+</html>
